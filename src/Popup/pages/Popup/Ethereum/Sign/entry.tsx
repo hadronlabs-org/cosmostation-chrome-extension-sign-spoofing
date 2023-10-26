@@ -69,7 +69,7 @@ export default function Entry({ queue }: EntryProps) {
 
   useEffect(() => {
     void (async () => {
-      const address = getAddress(chain, keyPair?.publicKey);
+      const address = getAddress(currentAccount, chain, keyPair?.publicKey);
 
       if (address.toLowerCase() !== params[0].toLowerCase()) {
         responseToWeb({
@@ -156,8 +156,10 @@ export default function Entry({ queue }: EntryProps) {
                     const path = `${chain.bip44.purpose}/${chain.bip44.coinType}/${chain.bip44.account}/${chain.bip44.change}/${currentAccount.bip44.addressIndex}`;
                     const { publicKey } = await ethereumApp.getAddress(path);
 
-                    const accountAddress = currentAccount.ethereumPublicKey ? getAddress(chain, Buffer.from(currentAccount.ethereumPublicKey, 'hex')) : '';
-                    const ledgerAddress = getAddress(chain, Buffer.from(publicKey, 'hex'));
+                    const accountAddress = currentAccount.ethereumPublicKey
+                      ? getAddress(currentAccount, chain, Buffer.from(currentAccount.ethereumPublicKey, 'hex'))
+                      : '';
+                    const ledgerAddress = getAddress(currentAccount, chain, Buffer.from(publicKey, 'hex'));
 
                     if (!isEqualsIgnoringCase(accountAddress, ledgerAddress)) {
                       throw new Error('Account address and Ledger address are not the same.');

@@ -23,6 +23,7 @@ export type HomeTabPath = {
 
 export type AccountCommon = {
   id: string;
+  address?: string;
 };
 
 export type AllowedOrigin = { accountId: AccountCommon['id']; origin: string };

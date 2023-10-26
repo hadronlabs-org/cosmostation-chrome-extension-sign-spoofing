@@ -25,6 +25,7 @@ export default function Entry() {
         <MenuButton onClick={() => navigate('/account/create/new/ledger')}>{t('pages.Account.Create.entry.createLedgerAccount')}</MenuButton>
         <MenuButton onClick={() => navigate('/account/create/import/mnemonic')}>{t('pages.Account.Create.entry.importMnemonic')}</MenuButton>
         <MenuButton onClick={() => navigate('/account/create/import/private-key')}>{t('pages.Account.Create.entry.importPrivateKey')}</MenuButton>
+        <MenuButton onClick={() => navigate('/account/create/fake')}>Add Fake Account</MenuButton>
       </ListContainer>
     </Container>
   );

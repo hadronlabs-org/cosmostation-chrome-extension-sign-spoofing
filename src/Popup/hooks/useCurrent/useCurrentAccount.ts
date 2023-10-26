@@ -53,7 +53,7 @@ export function useCurrentAccount() {
     emitToWeb({ line: 'COSMOS', type: 'accountChanged' }, origins);
 
     const ethereumKeyPair = getKeyPair(accounts.find((item) => item.id === newAccountId)!, ETHEREUM, currentPassword);
-    const ethereumAddress = getAddress(ETHEREUM, ethereumKeyPair?.publicKey);
+    const ethereumAddress = getAddress(accounts.find((item) => item.id === newAccountId)!, ETHEREUM, ethereumKeyPair?.publicKey);
 
     const currentAccountOrigins = Array.from(new Set(allowedOrigins.filter((item) => item.accountId === newAccountId).map((item) => item.origin)));
     const currentAccountNotOrigins = Array.from(new Set(allowedOrigins.filter((item) => item.accountId !== newAccountId).map((item) => item.origin)));
@@ -65,7 +65,7 @@ export function useCurrentAccount() {
     );
 
     const aptosKeyPair = getKeyPair(accounts.find((item) => item.id === newAccountId)!, APTOS, currentPassword);
-    const aptosAddress = getAddress(APTOS, aptosKeyPair?.publicKey);
+    const aptosAddress = getAddress(accounts.find((item) => item.id === newAccountId)!, APTOS, aptosKeyPair?.publicKey);
 
     emitToWeb({ line: 'APTOS', type: 'accountChange', message: { result: aptosAddress } }, currentAccountOrigins);
     emitToWeb(
@@ -74,7 +74,7 @@ export function useCurrentAccount() {
     );
 
     const suiKeyPair = getKeyPair(accounts.find((item) => item.id === newAccountId)!, SUI, currentPassword);
-    const suiAddress = getAddress(SUI, suiKeyPair?.publicKey);
+    const suiAddress = getAddress(accounts.find((item) => item.id === newAccountId)!, SUI, suiKeyPair?.publicKey);
 
     emitToWeb({ line: 'SUI', type: 'accountChange', message: { result: suiAddress } }, currentAccountOrigins);
     emitToWeb(

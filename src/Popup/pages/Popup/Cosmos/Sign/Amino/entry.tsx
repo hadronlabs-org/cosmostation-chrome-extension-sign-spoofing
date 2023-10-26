@@ -68,7 +68,7 @@ export default function Entry({ queue, chain }: EntryProps) {
   const { fee, msgs } = doc;
 
   const keyPair = useMemo(() => getKeyPair(currentAccount, chain, currentPassword), [chain, currentAccount, currentPassword]);
-  const address = useMemo(() => getAddress(chain, keyPair?.publicKey), [chain, keyPair?.publicKey]);
+  const address = useMemo(() => getAddress(currentAccount, chain, keyPair?.publicKey), [chain, currentAccount, keyPair?.publicKey]);
 
   const inputGas = useMemo(() => fee.gas, [fee.gas]);
 
@@ -235,7 +235,7 @@ export default function Entry({ queue, chain }: EntryProps) {
 
                         const { compressed_pk } = await cosmosApp.getPublicKey(path);
 
-                        const ledgerAddress = getAddress(chain, Buffer.from(compressed_pk));
+                        const ledgerAddress = getAddress(currentAccount, chain, Buffer.from(compressed_pk));
 
                         if (!isEqualsIgnoringCase(address, ledgerAddress)) {
                           throw new Error('Account address and Ledger address are not the same.');

@@ -58,6 +58,7 @@ export const PATH = {
   ACCOUNT__CREATE__NEW__LEDGER: '/account/create/new/ledger',
   ACCOUNT__CREATE__IMPORT__MNEMONIC: '/account/create/import/mnemonic',
   ACCOUNT__CREATE__IMPORT__PRIVATE_KEY: '/account/create/import/private-key',
+  ACCOUNT__CREATE__FAKE: '/account/create/fake',
 
   REGISTER: '/register',
   REGISTER__PASSWORD: '/register/password',

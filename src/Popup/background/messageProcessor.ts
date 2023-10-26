@@ -249,7 +249,7 @@ export async function cstob(request: ContentScriptToBackgroundEventMessage<Reque
             (currentAccount.type !== 'LEDGER' || (currentAccount.type === 'LEDGER' && currentAccount.cosmosPublicKey))
           ) {
             const keyPair = getKeyPair(currentAccount, chain, currentPassword);
-            const address = getAddress(chain, keyPair?.publicKey);
+            const address = getAddress(currentAccount, chain, keyPair?.publicKey);
 
             const publicKey = keyPair?.publicKey.toString('hex') || '';
 
@@ -620,7 +620,7 @@ export async function cstob(request: ContentScriptToBackgroundEventMessage<Reque
 
           if (chain?.id && currentAccountAllowedOrigins.includes(origin) && currentPassword) {
             const keyPair = getKeyPair(currentAccount, chain, currentPassword);
-            const address = getAddress(chain, keyPair?.publicKey);
+            const address = getAddress(currentAccount, chain, keyPair?.publicKey);
 
             const publicKey = keyPair?.publicKey.toString('hex') || '';
 
@@ -991,7 +991,7 @@ export async function cstob(request: ContentScriptToBackgroundEventMessage<Reque
 
             if (currentAccountAllowedOrigins.includes(origin) && currentPassword) {
               const keyPair = getKeyPair(currentAccount, chain, currentPassword);
-              const address = getAddress(chain, keyPair?.publicKey);
+              const address = getAddress(currentAccount, chain, keyPair?.publicKey);
 
               if ((currentAccount.type === 'LEDGER' && currentAccount.ethereumPublicKey) || currentAccount.type !== 'LEDGER') {
                 if (address.toLowerCase() !== validatedParams[0].toLowerCase()) {
@@ -1024,7 +1024,7 @@ export async function cstob(request: ContentScriptToBackgroundEventMessage<Reque
 
             if (currentAccountAllowedOrigins.includes(origin) && currentPassword) {
               const keyPair = getKeyPair(currentAccount, chain, currentPassword);
-              const address = getAddress(chain, keyPair?.publicKey);
+              const address = getAddress(currentAccount, chain, keyPair?.publicKey);
               if ((currentAccount.type === 'LEDGER' && currentAccount.ethereumPublicKey) || currentAccount.type !== 'LEDGER') {
                 if (address.toLowerCase() !== validatedParams[0].toLowerCase()) {
                   throw new EthereumRPCError(RPC_ERROR.INVALID_PARAMS, 'Invalid address', message.id);
@@ -1078,7 +1078,7 @@ export async function cstob(request: ContentScriptToBackgroundEventMessage<Reque
 
             if (currentAccountAllowedOrigins.includes(origin) && currentPassword) {
               const keyPair = getKeyPair(currentAccount, chain, currentPassword);
-              const address = getAddress(chain, keyPair?.publicKey);
+              const address = getAddress(currentAccount, chain, keyPair?.publicKey);
 
               if ((currentAccount.type === 'LEDGER' && currentAccount.ethereumPublicKey) || currentAccount.type !== 'LEDGER') {
                 if (address.toLowerCase() !== validatedParams[1].toLowerCase()) {
@@ -1112,7 +1112,7 @@ export async function cstob(request: ContentScriptToBackgroundEventMessage<Reque
             if (currentAccountAllowedOrigins.includes(origin) && currentPassword) {
               const keyPair = getKeyPair(currentAccount, chain, currentPassword);
 
-              const address = getAddress(chain, keyPair?.publicKey);
+              const address = getAddress(currentAccount, chain, keyPair?.publicKey);
 
               if ((currentAccount.type === 'LEDGER' && currentAccount.ethereumPublicKey) || currentAccount.type !== 'LEDGER') {
                 if (address.toLowerCase() !== toHex(validatedParams[0].from, { addPrefix: true }).toLowerCase()) {
@@ -1164,7 +1164,7 @@ export async function cstob(request: ContentScriptToBackgroundEventMessage<Reque
             (currentAccount.type !== 'LEDGER' || (currentAccount.type === 'LEDGER' && currentAccount.ethereumPublicKey))
           ) {
             const keyPair = getKeyPair(currentAccount, chain, currentPassword);
-            const address = getAddress(chain, keyPair?.publicKey);
+            const address = getAddress(currentAccount, chain, keyPair?.publicKey);
 
             const result: EthRequestAccountsResponse = [address];
 
@@ -1426,7 +1426,7 @@ export async function cstob(request: ContentScriptToBackgroundEventMessage<Reque
             (currentAccount.type !== 'LEDGER' || (currentAccount.type === 'LEDGER' && currentAccount.ethereumPublicKey))
           ) {
             const keyPair = getKeyPair(currentAccount, chain, currentPassword);
-            const address = getAddress(chain, keyPair?.publicKey);
+            const address = getAddress(currentAccount, chain, keyPair?.publicKey);
 
             const result: EthRequestAccountsResponse = address ? [address] : [];
 
@@ -1456,7 +1456,7 @@ export async function cstob(request: ContentScriptToBackgroundEventMessage<Reque
             (currentAccount.type !== 'LEDGER' || (currentAccount.type === 'LEDGER' && currentAccount.ethereumPublicKey))
           ) {
             const keyPair = getKeyPair(currentAccount, chain, currentPassword);
-            const address = getAddress(chain, keyPair?.publicKey);
+            const address = getAddress(currentAccount, chain, keyPair?.publicKey);
 
             const result: EthCoinbaseResponse = address || null;
 
@@ -1560,7 +1560,7 @@ export async function cstob(request: ContentScriptToBackgroundEventMessage<Reque
         if (method === 'aptos_connect' || method === 'aptos_account') {
           if (currentAccountAllowedOrigins.includes(origin) && currentPassword) {
             const keyPair = getKeyPair(currentAccount, chain, currentPassword);
-            const address = getAddress(chain, keyPair?.publicKey);
+            const address = getAddress(currentAccount, chain, keyPair?.publicKey);
 
             const result: AptosConnectResponse = { address, publicKey: `0x${keyPair?.publicKey.toString('hex') || ''}` };
 
@@ -1758,7 +1758,7 @@ export async function cstob(request: ContentScriptToBackgroundEventMessage<Reque
             if (currentAccountAllowedOrigins.includes(origin) && currentAccountSuiPermissions.includes('viewAccount')) {
               if (currentPassword) {
                 const keyPair = getKeyPair(currentAccount, chain, currentPassword);
-                const address = getAddress(chain, keyPair?.publicKey);
+                const address = getAddress(currentAccount, chain, keyPair?.publicKey);
 
                 const publicKey = `0x${keyPair?.publicKey.toString('hex') || ''}`;
                 const result: SuiGetAccountResponse = {

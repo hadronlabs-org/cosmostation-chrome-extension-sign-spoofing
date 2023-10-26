@@ -7,3 +7,4 @@ prod/
 tmp/
 build/
 .DS_Store
+.yarn/*

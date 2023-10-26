@@ -140,7 +140,7 @@ export default function Entry({ queue }: EntryProps) {
   const [isOpenGasPriceDialog, setIsOpenGasPriceDialog] = useState(false);
 
   const keyPair = useMemo(() => getKeyPair(currentAccount, chain, currentPassword), [chain, currentAccount, currentPassword]);
-  const address = useMemo(() => getAddress(chain, keyPair?.publicKey), [chain, keyPair?.publicKey]);
+  const address = useMemo(() => getAddress(currentAccount, chain, keyPair?.publicKey), [chain, currentAccount, keyPair?.publicKey]);
   const transactionCount = useTransactionCountSWR([address, 'latest']);
 
   const { message, messageId, origin } = queue;
@@ -550,9 +550,9 @@ export default function Entry({ queue }: EntryProps) {
                           const { publicKey } = await ethereumApp.getAddress(path);
 
                           const accountAddress = currentAccount.ethereumPublicKey
-                            ? getAddress(chain, Buffer.from(currentAccount.ethereumPublicKey, 'hex'))
+                            ? getAddress(currentAccount, chain, Buffer.from(currentAccount.ethereumPublicKey, 'hex'))
                             : '';
-                          const ledgerAddress = getAddress(chain, Buffer.from(publicKey, 'hex'));
+                          const ledgerAddress = getAddress(currentAccount, chain, Buffer.from(publicKey, 'hex'));
 
                           if (!isEqualsIgnoringCase(accountAddress, ledgerAddress)) {
                             throw new Error('Account address and Ledger address are not the same.');

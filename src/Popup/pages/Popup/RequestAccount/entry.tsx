@@ -34,7 +34,7 @@ export default function Entry() {
 
       if (chain) {
         const keyPair = getKeyPair(currentAccount, chain, currentPassword);
-        const address = getAddress(chain, keyPair?.publicKey);
+        const address = getAddress(currentAccount, chain, keyPair?.publicKey);
 
         const publicKey = keyPair!.publicKey.toString('hex');
 
@@ -64,7 +64,7 @@ export default function Entry() {
       const chain = ETHEREUM;
 
       const keyPair = getKeyPair(currentAccount, chain, currentPassword);
-      const address = getAddress(chain, keyPair?.publicKey);
+      const address = getAddress(currentAccount, chain, keyPair?.publicKey);
 
       const result: EthRequestAccountsResponse = [address];
 
@@ -85,7 +85,7 @@ export default function Entry() {
       const chain = APTOS;
 
       const keyPair = getKeyPair(currentAccount, chain, currentPassword);
-      const address = getAddress(chain, keyPair?.publicKey);
+      const address = getAddress(currentAccount, chain, keyPair?.publicKey);
 
       const result: AptosAccountResponse = { address, publicKey: `0x${keyPair!.publicKey.toString('hex')}` };
 
@@ -124,7 +124,7 @@ export default function Entry() {
       const { message, messageId, origin } = currentQueue;
 
       const keyPair = getKeyPair(currentAccount, chain, currentPassword);
-      const address = getAddress(chain, keyPair?.publicKey);
+      const address = getAddress(currentAccount, chain, keyPair?.publicKey);
 
       const publicKey = `0x${keyPair!.publicKey.toString('hex')}`;
 

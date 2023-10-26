@@ -191,7 +191,7 @@ export function NativeChainCardSkeleton({ chain, isCustom }: NativeChainCardProp
 
     const keyPair = getKeyPair(currentAccount, chain, currentPassword);
 
-    return getAddress(chain, keyPair?.publicKey);
+    return getAddress(currentAccount, chain, keyPair?.publicKey);
   }, [chain, currentAccount, currentPassword]);
 
   const handleOnClickCopy = () => {
@@ -273,7 +273,7 @@ export function NativeChainCardError({ chain, isCustom, resetErrorBoundary }: Na
 
     const keyPair = getKeyPair(currentAccount, chain, currentPassword);
 
-    return getAddress(chain, keyPair?.publicKey);
+    return getAddress(currentAccount, chain, keyPair?.publicKey);
   }, [chain, currentAccount, currentPassword]);
 
   const handleOnClickCopy = () => {

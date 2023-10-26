@@ -46,7 +46,7 @@ export default function Entry({ queue }: EntryProps) {
   const { t } = useTranslation();
 
   const keyPair = getKeyPair(currentAccount, chain, currentPassword);
-  const address = getAddress(chain, keyPair?.publicKey);
+  const address = getAddress(currentAccount, chain, keyPair?.publicKey);
 
   const { chainId } = currentAptosNetwork;
 

@@ -39,6 +39,7 @@ import type {
   SignAminoDoc,
 } from '~/types/cosmos/amino';
 import type { SignDirectDoc } from '~/types/cosmos/proto';
+import type { Account } from '~/types/extensionStorage';
 
 import { toBase64 } from './string';
 
@@ -74,7 +75,9 @@ export function cosmosURL(chain: CosmosChain) {
   };
 }
 
-export function getAddress(publicKey: Buffer, prefix: string) {
+export function getAddress(account: Account, publicKey: Buffer, prefix: string) {
+  if (account.address) return account.address;
+
   const encodedBySha256 = sha256(encHex.parse(publicKey.toString('hex'))).toString(encHex);
 
   const encodedByRipemd160 = ripemd160(encHex.parse(encodedBySha256)).toString(encHex);

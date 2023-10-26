@@ -20,7 +20,7 @@ import { getAddress as getSuiAddress } from '~/Popup/utils/sui';
 import type { Chain } from '~/types/chain';
 import type { Account } from '~/types/extensionStorage';
 
-export function getAddress(chain: Chain, publicKey?: Buffer) {
+export function getAddress(account: Account, chain: Chain, publicKey?: Buffer) {
   if (!publicKey) {
     return '';
   }
@@ -28,7 +28,7 @@ export function getAddress(chain: Chain, publicKey?: Buffer) {
     if (chain.type === 'ETHERMINT') {
       return getAddressForEthermint(publicKey, chain.bech32Prefix.address);
     }
-    return getBech32Address(publicKey, chain.bech32Prefix.address);
+    return getBech32Address(account, publicKey, chain.bech32Prefix.address);
   }
 
   if (chain.line === 'ETHEREUM') {

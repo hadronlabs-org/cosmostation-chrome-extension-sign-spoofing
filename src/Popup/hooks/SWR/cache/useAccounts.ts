@@ -33,7 +33,7 @@ export function useAccounts(suspense?: boolean) {
                 addresses[chain.id] = storageAddress;
               } else {
                 const keypair = getKeyPair(account, chain, currentPassword);
-                const address = getAddress(chain, keypair?.publicKey);
+                const address = getAddress(account, chain, keypair?.publicKey);
                 addresses[chain.id] = address;
                 localStorage.setItem(key, address);
               }

@@ -65,7 +65,7 @@ export default function Entry({ queue, chain }: EntryProps) {
   const { fee } = decodedAuthInfoBytes;
 
   const keyPair = useMemo(() => getKeyPair(currentAccount, chain, currentPassword), [chain, currentAccount, currentPassword]);
-  const address = useMemo(() => getAddress(chain, keyPair?.publicKey), [chain, keyPair?.publicKey]);
+  const address = useMemo(() => getAddress(currentAccount, chain, keyPair?.publicKey), [chain, currentAccount, keyPair?.publicKey]);
 
   const inputGas = useMemo(() => (fee?.gas_limit ? String(fee.gas_limit) : COSMOS_DEFAULT_GAS), [fee?.gas_limit]);
 

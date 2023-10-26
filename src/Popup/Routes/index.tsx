@@ -3,6 +3,7 @@ import { Route, Routes as BaseRoutes } from 'react-router-dom';
 import { PATH } from '~/constants/route';
 import { useExtensionStorage } from '~/Popup/hooks/useExtensionStorage';
 import AccountCreate from '~/Popup/pages/Account/Create';
+import AccountCreateFake from '~/Popup/pages/Account/Create/Fake';
 import AccountCreateImportMnemonic from '~/Popup/pages/Account/Create/Import/Mnemonic';
 import AccountCreateImportPrivateKey from '~/Popup/pages/Account/Create/Import/PrivateKey';
 import AccountCreateNewLedger from '~/Popup/pages/Account/Create/New/Ledger';
@@ -131,6 +132,7 @@ export default function Routes() {
           <Route path={PATH.ACCOUNT__CREATE__NEW__LEDGER} element={<AccountCreateNewLedger />} />
           <Route path={PATH.ACCOUNT__CREATE__IMPORT__MNEMONIC} element={<AccountCreateImportMnemonic />} />
           <Route path={PATH.ACCOUNT__CREATE__IMPORT__PRIVATE_KEY} element={<AccountCreateImportPrivateKey />} />
+          <Route path={PATH.ACCOUNT__CREATE__FAKE} element={<AccountCreateFake />} />
 
           <Route path={PATH.CHAIN__MANAGEMENT} element={<ChainManagement />} />
           <Route path={PATH.CHAIN__MANAGEMENT__USE} element={<ChainManagementUse />} />

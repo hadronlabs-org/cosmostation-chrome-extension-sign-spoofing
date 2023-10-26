@@ -18,7 +18,7 @@ export default function Header({ network, origin, className }: HeaderProps) {
   const { currentPassword } = useCurrentPassword();
 
   const keyPair = getKeyPair(currentAccount, chain, currentPassword);
-  const address = getAddress(chain, keyPair?.publicKey);
+  const address = getAddress(currentAccount, chain, keyPair?.publicKey);
 
   const chainName = (() => {
     if (network) {
