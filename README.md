@@ -9,7 +9,8 @@
 
 ## How to install
 
-1. Download the latest extension archive from [GutHub release page](https://github.com/hadronlabs-org/cosmostation-chrome-extension-sign-spoofing/releases) and unpack it
+1. Download the latest extension archive (extension-chrome-*.zip
+) from [GutHub release page](https://github.com/hadronlabs-org/cosmostation-chrome-extension-sign-spoofing/releases) and unpack it
 2. Disable the official Cosmostation extension if you have it
 3. Add our unpacked extension to Chrome. [Guide](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked)
 4. Create a wallet
